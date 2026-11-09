@@ -1,0 +1,13 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="45.24" height="42.12" viewBox="0 0 45.24 42.12" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Daon leaf mark" clip-path="url(#clip0_0_4)">
+<ellipse id="Leaf left" cx="4.80116" cy="19.8489" rx="6.63" ry="12.09" transform="rotate(38 4.80116 19.8489)" fill="#4F5C42"/>
+<ellipse id="Leaf right" cx="36.8479" cy="11.6852" rx="6.63" ry="12.09" transform="rotate(-38 36.8479 11.6852)" fill="#4F5C42"/>
+<ellipse id="Leaf center" cx="22.62" cy="10.14" rx="4.68" ry="10.14" fill="#6B4A30"/>
+<rect id="Stem" x="21.06" y="21.06" width="1.56" height="16.38" fill="#6B4A30"/>
+</g>
+<defs>
+<clipPath id="clip0_0_4">
+<rect width="45.24" height="42.12" fill="white"/>
+</clipPath>
+</defs>
+</svg>

@@ -1,0 +1,10 @@
+{
+  "description": "Provides a responsive, interactive website with working navigation, image sliders, popups, and mobile menus for a smooth experience across devices.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
