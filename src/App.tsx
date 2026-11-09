@@ -32,7 +32,7 @@ const programs = [
 const heroSlides = [
   {
     eyebrow: "ON GYEOL KOREAN MEDICINE CLINIC",
-    title: ["몸의 균형을 살피고,", "일상의 건강을 잇습니다."],
+    title: ["몸의 균형을 살피고,", "일상의 건강을 이어 가겠습니다."],
     description: [
       "한 사람의 생활과 체질을 세심하게 살피는",
       "온결한의원의 맞춤 진료를 경험해 보세요.",
@@ -41,7 +41,7 @@ const heroSlides = [
   },
   {
     eyebrow: "A THOUGHTFUL WAY TO RECOVER",
-    title: ["증상 너머의 원인을,", "차분히 들여다봅니다."],
+    title: ["증상 너머의 원인을,", "차분히 들여다보고 정확한 치료를 해드립니다."],
     description: [
       "충분한 대화와 꼼꼼한 진단을 바탕으로",
       "지금 내 몸에 필요한 치료를 제안합니다.",
@@ -62,7 +62,7 @@ const heroSlides = [
 const healthArticles = [
   {
     category: "생활 건강",
-    title: "아침마다 목이 뻐근한 이유와 편안한 수면 자세",
+    title: "거북목과 아침마다 목이 뻐근한 이유와 편안한 수면 자세",
     date: "2025. 02. 14",
   },
   {
@@ -72,7 +72,7 @@ const healthArticles = [
   },
   {
     category: "한방 상식",
-    title: "환절기 면역 관리를 위한 세 가지 생활 습관",
+    title: "환절기 감기,독감 면역 관리를 위한 세 가지 생활 습관",
     date: "2025. 01. 24",
   },
 ]
@@ -192,7 +192,7 @@ function ConsultationModal({ onClose }: { onClose: () => void }) {
           <div className="modal__complete">
             <span>온결</span>
             <h2 id="modal-title">상담 신청이 접수되었습니다.</h2>
-            <p>확인 후 남겨주신 연락처로 안내드리겠습니다.</p>
+            <p>확인 후 남겨주신 연락처로 안내드리겠습니다. 연락이 안되시는 경우, 문자로 이메일을 남겨주시길 바랍니다.</p>
             <button onClick={onClose}>확인</button>
           </div>
         ) : (
@@ -403,7 +403,7 @@ export default function App() {
           <div className="philosophy__copy">
             <strong>온전히 듣고, 바르게 살핍니다.</strong>
             <p>
-              온결은 눈앞의 증상만 빠르게 다루기보다 몸이 보내는 신호와 생활의
+              온결 한의원은 눈앞의 증상만 빠르게 다루기보다 몸이 보내는 신호와 생활의
               흐름을 함께 살핍니다. 충분한 대화로 시작해 꼭 필요한 치료만
               정직하게 제안합니다.
             </p>
@@ -418,7 +418,7 @@ export default function App() {
               </div>
               <div>
                 <dt>03</dt>
-                <dd>일상까지 잇는 관리</dd>
+                <dd> 평범한 일상을 되찾는 그날까지 관리</dd>
               </div>
             </dl>
           </div>
@@ -430,7 +430,7 @@ export default function App() {
           <div className="section-heading">
             <p className="eyebrow">SPECIAL CLINIC</p>
             <h2>더 세심하게 살피는 특화 진료</h2>
-            <p>몸의 변화와 생활의 리듬을 고려한 온결의 진료입니다.</p>
+            <p>몸의 변화와 생활의 리듬을 고려한 온결 한의원의 진료입니다.</p>
           </div>
           <div className="clinic-list">
             {programs.map((program, index) => (
