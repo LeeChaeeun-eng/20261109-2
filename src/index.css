@@ -1,0 +1,1433 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600&display=swap");
+@import "tailwindcss";
+
+:root {
+  --green: #173a31;
+  --sage-bg: #e9eee7;
+  --sage: #cad8c8;
+  --sage-deep: #9eb39e;
+  --cream: #f7f5ef;
+  --sand: #b19a6a;
+  --muted: #77776f;
+  --line: #ddd9cc;
+}
+
+/* 브라우저마다 다른 기본 스타일을 통일하는 공통 설정입니다. */
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 24px;
+  }
+
+  body {
+    min-width: 320px;
+    margin: 0;
+    color: var(--green);
+    background: var(--cream);
+    font-family: "Noto Sans KR", sans-serif;
+    font-weight: 400;
+    word-break: keep-all;
+  }
+
+  button,
+  a,
+  input,
+  textarea {
+    font: inherit;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  button:focus-visible,
+  a:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible {
+    outline: 2px solid #b69b62;
+    outline-offset: 3px;
+  }
+}
+
+/* 진료 시간과 전화번호가 들어가는 최상단 안내 바입니다. */
+.hours-bar {
+  height: 33px;
+  color: rgba(255, 255, 255, 0.78);
+  background: var(--green);
+  font-size: 12px;
+  font-weight: 300;
+  letter-spacing: -0.15px;
+}
+
+.hours-bar > div {
+  display: flex;
+  width: min(100% - 48px, 1380px);
+  height: 100%;
+  margin: 0 auto;
+  align-items: center;
+}
+
+.hours-bar b {
+  margin: 0 8px;
+  font-weight: 300;
+}
+
+.hours-bar a {
+  margin-left: auto;
+}
+
+/* 로고, 데스크톱 메뉴, 예약 버튼을 한 줄에 배치합니다. */
+.site-header {
+  position: relative;
+  z-index: 20;
+  height: 90px;
+  background: #f8f7f2;
+}
+
+.site-header__inner {
+  display: flex;
+  width: min(100% - 48px, 1380px);
+  height: 100%;
+  margin: 0 auto;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  min-width: 250px;
+  align-items: center;
+  gap: 17px;
+}
+
+.logo strong {
+  font-size: 36px;
+  font-weight: 400;
+  letter-spacing: -3px;
+  line-height: 1;
+}
+
+.logo span {
+  padding-top: 4px;
+  color: #5d7169;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.nav {
+  display: flex;
+  margin: 0 auto;
+  align-items: center;
+  gap: clamp(36px, 4.2vw, 70px);
+}
+
+.nav > a {
+  position: relative;
+  font-size: 16px;
+  letter-spacing: -0.6px;
+  white-space: nowrap;
+}
+
+.nav > a::after {
+  position: absolute;
+  right: 50%;
+  bottom: -10px;
+  left: 50%;
+  height: 1px;
+  background: var(--green);
+  content: "";
+  transition: right 180ms ease, left 180ms ease;
+}
+
+.nav > a:hover::after {
+  right: 0;
+  left: 0;
+}
+
+.consult-button,
+.nav__mobile-cta {
+  min-width: 167px;
+  height: 50px;
+  border: 0;
+  border-radius: 999px;
+  color: white;
+  background: var(--green);
+  font-size: 15px;
+  transition: transform 180ms ease, background 180ms ease;
+}
+
+.consult-button:hover {
+  transform: translateY(-2px);
+  background: #244b40;
+}
+
+.nav__mobile-cta,
+.menu-button {
+  display: none;
+}
+
+/* 첨부 시안의 연한 녹색 히어로 영역입니다. */
+.hero {
+  height: 634px;
+  background: var(--sage-bg);
+  overflow: hidden;
+}
+
+.hero__inner {
+  position: relative;
+  width: min(100% - 48px, 1380px);
+  height: 100%;
+  margin: 0 auto;
+}
+
+.hero__content {
+  position: relative;
+  z-index: 2;
+  padding: 125px 0 0 14px;
+  animation: reveal-copy 500ms ease both;
+}
+
+.eyebrow {
+  margin: 0;
+  color: var(--sand);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: -0.1px;
+}
+
+.hero h1 {
+  margin: 51px 0 27px;
+  font-size: clamp(38px, 3.2vw, 50px);
+  font-weight: 300;
+  letter-spacing: -3.5px;
+  line-height: 1.34;
+}
+
+.hero__description {
+  margin: 0;
+  color: #6f746e;
+  font-size: 17px;
+  font-weight: 300;
+  letter-spacing: -0.75px;
+  line-height: 1.7;
+}
+
+.hero__actions {
+  display: flex;
+  margin-top: 36px;
+  align-items: center;
+  gap: 29px;
+}
+
+.hero__actions button {
+  width: 191px;
+  height: 60px;
+  border: 0;
+  border-radius: 999px;
+  color: white;
+  background: var(--green);
+  font-size: 15px;
+}
+
+.hero__actions a {
+  color: #60736c;
+  font-size: 14px;
+}
+
+.hero__actions span {
+  display: inline-block;
+  margin-left: 7px;
+  transition: transform 180ms ease;
+}
+
+.hero__actions button:hover span,
+.hero__actions a:hover span {
+  transform: translateX(4px);
+}
+
+.pagination {
+  display: flex;
+  margin-top: 70px;
+  color: #536d64;
+  font-size: 11px;
+  align-items: center;
+  gap: 9px;
+}
+
+.pagination > button {
+  min-width: 22px;
+  padding: 0;
+  border: 0;
+  color: #536d64;
+  background: transparent;
+  font-size: 11px;
+  text-align: left;
+}
+
+.pagination > button:last-child {
+  text-align: right;
+}
+
+.pagination__track {
+  display: grid;
+  width: 89px;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.pagination__track button {
+  height: 12px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.pagination__track button::after {
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: #a5b8b0;
+  content: "";
+}
+
+.pagination__track button.is-active::after {
+  height: 2px;
+  background: #41695b;
+}
+
+/* 원본의 추상적인 원과 침 선을 이미지 없이 가볍게 표현합니다. */
+.clinic-art {
+  position: absolute;
+  top: 48px;
+  right: -14px;
+  width: 525px;
+  height: 525px;
+  transition: filter 500ms ease, transform 500ms ease;
+}
+
+.clinic-art__outer,
+.clinic-art__inner,
+.clinic-art__sun {
+  position: absolute;
+  border-radius: 50%;
+}
+
+.clinic-art__outer {
+  inset: 0;
+  background: #d4e0d1;
+}
+
+.clinic-art__inner {
+  right: 0;
+  bottom: 49px;
+  width: 377px;
+  height: 377px;
+  background: #c2d2c1;
+}
+
+.clinic-art__sun {
+  z-index: 3;
+  top: 60px;
+  right: 124px;
+  width: 176px;
+  height: 176px;
+  background: #e9e0c9;
+}
+
+.clinic-art__stem {
+  position: absolute;
+  z-index: 2;
+  top: 184px;
+  right: 40px;
+  display: flex;
+  width: 310px;
+  transform: rotate(32deg);
+  align-items: center;
+}
+
+.clinic-art__stem span {
+  width: 52px;
+  height: 52px;
+  margin-left: -16px;
+  border-radius: 50%;
+  background: #a7bba4;
+}
+
+.clinic-art__stem span:nth-child(2n) {
+  width: 46px;
+  height: 46px;
+}
+
+.clinic-art__needles {
+  position: absolute;
+  z-index: 4;
+  top: 38px;
+  left: 57px;
+  width: 440px;
+  height: 230px;
+}
+
+.clinic-art__needles i {
+  --i: 0;
+  position: absolute;
+  top: calc(var(--i) * 4px);
+  left: calc(var(--i) * 23px);
+  width: 320px;
+  height: 185px;
+  border: 2px solid #627e73;
+  border-bottom: 0;
+  border-left-color: transparent;
+  border-radius: 50% 70% 0 0;
+  transform: rotate(calc((var(--i) - 4) * 2deg));
+  transform-origin: bottom center;
+}
+
+.clinic-art--1 {
+  filter: hue-rotate(18deg) saturate(0.82);
+  transform: rotate(5deg);
+}
+
+.clinic-art--2 {
+  filter: hue-rotate(-12deg) saturate(0.72) brightness(1.03);
+  transform: scale(0.93) translate(-20px, 12px);
+}
+
+@keyframes reveal-copy {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 진료 프로그램 카드: 세 장의 동일한 구조를 그리드로 반복합니다. */
+.program-section {
+  position: relative;
+  min-height: 446px;
+  padding: 57px 0 44px;
+  background: #f8f7f2;
+}
+
+.program-section__inner {
+  width: min(100% - 48px, 1354px);
+  margin: 0 auto;
+}
+
+.program-section h2 {
+  margin: 24px 0 5px;
+  font-size: 30px;
+  font-weight: 300;
+  letter-spacing: -1.7px;
+}
+
+.program-section__lead {
+  margin: 0;
+  color: #808079;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.program-grid {
+  display: grid;
+  margin-top: 37px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 34px;
+}
+
+.program-card {
+  position: relative;
+  min-height: 174px;
+  padding: 26px 25px;
+  border: 1px solid var(--line);
+  border-radius: 17px;
+  background: rgba(255, 255, 255, 0.78);
+  transition: transform 180ms ease, border-color 180ms ease,
+    box-shadow 180ms ease;
+  color: var(--green);
+  font: inherit;
+  text-align: left;
+}
+
+.program-card:hover {
+  transform: translateY(-5px);
+  border-color: #b7c4b5;
+  box-shadow: 0 16px 32px rgba(23, 58, 49, 0.08);
+}
+
+.program-card__number {
+  color: var(--sand);
+  font-size: 11px;
+}
+
+.program-card h3 {
+  margin: 18px 0 12px;
+  font-size: 22px;
+  font-weight: 300;
+  letter-spacing: -1.5px;
+}
+
+.program-card p {
+  margin: 0;
+  color: #777971;
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 1.65;
+}
+
+.program-card p span {
+  display: block;
+}
+
+.program-card__more {
+  position: absolute;
+  right: 25px;
+  bottom: 22px;
+  color: #71827b;
+  font-size: 11px;
+  opacity: 0;
+  transform: translateX(-5px);
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.program-card:hover .program-card__more,
+.program-card:focus-visible .program-card__more {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.program-card__icon {
+  position: absolute;
+  top: 17px;
+  right: 29px;
+  display: grid;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #dce6da;
+  place-items: center;
+}
+
+.program-card__icon.needle i {
+  position: relative;
+  width: 17px;
+  height: 25px;
+  border: 1px solid #4c7064;
+}
+
+.program-card__icon.needle i::before,
+.program-card__icon.needle i::after {
+  position: absolute;
+  top: 1px;
+  left: 7px;
+  width: 1px;
+  height: 22px;
+  background: #4c7064;
+  content: "";
+  transform: rotate(35deg);
+}
+
+.program-card__icon.needle i::after {
+  transform: rotate(-35deg);
+}
+
+.program-card__icon.balance i {
+  width: 23px;
+  height: 23px;
+  border: 1px dotted #4c7064;
+  border-radius: 50%;
+}
+
+.scroll-note {
+  position: absolute;
+  right: max(24px, calc((100vw - 1380px) / 2));
+  bottom: 14px;
+  color: #777a73;
+  font-size: 9px;
+  letter-spacing: 0.4px;
+}
+
+/* 소개 이후 모든 섹션은 1440px보다 넓어지지 않는 공통 컨테이너를 사용합니다. */
+.section-inner {
+  width: min(
+    calc(100% - clamp(40px, 8vw, 128px)),
+    1376px
+  );
+  margin: 0 auto;
+}
+
+.philosophy {
+  padding: clamp(90px, 10vw, 150px) 0;
+  background: #e2e9df;
+}
+
+.philosophy__inner {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.8fr) minmax(420px, 1.2fr);
+  gap: clamp(60px, 10vw, 160px);
+}
+
+.philosophy h2,
+.section-heading h2,
+.location-copy h2 {
+  margin: 24px 0 15px;
+  font-size: clamp(32px, 3.3vw, 48px);
+  font-weight: 300;
+  letter-spacing: -2.7px;
+  line-height: 1.38;
+}
+
+.philosophy__copy {
+  padding-top: 43px;
+}
+
+.philosophy__copy strong {
+  font-size: clamp(22px, 2vw, 28px);
+  font-weight: 400;
+}
+
+.philosophy__copy > p {
+  max-width: 640px;
+  margin: 25px 0 44px;
+  color: #69736e;
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.9;
+}
+
+.philosophy__copy dl {
+  display: grid;
+  margin: 0;
+  border-top: 1px solid rgba(23, 58, 49, 0.18);
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.philosophy__copy dl div {
+  padding: 22px 12px 0 0;
+}
+
+.philosophy__copy dt {
+  color: var(--sand);
+  font-size: 11px;
+}
+
+.philosophy__copy dd {
+  margin: 9px 0 0;
+  font-size: 14px;
+}
+
+/* 공통 섹션 제목은 작은 영문 제목과 큰 한글 제목으로 구성합니다. */
+.section-heading {
+  margin-bottom: 52px;
+}
+
+.section-heading > p:last-child {
+  margin: 7px 0 0;
+  color: #7b7d75;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.section-heading--row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.section-heading--row > a {
+  padding-bottom: 22px;
+  color: #677871;
+  font-size: 13px;
+}
+
+/* 특화 진료는 큰 화면에서 한 줄 목록, 모바일에서는 카드 목록으로 보입니다. */
+.clinic-section {
+  padding: clamp(90px, 9vw, 140px) 0;
+  background: #f8f7f2;
+}
+
+.clinic-list {
+  border-top: 1px solid var(--line);
+}
+
+.clinic-list button {
+  display: grid;
+  width: 100%;
+  padding: 26px 5px;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  color: var(--green);
+  background: transparent;
+  text-align: left;
+  transition: padding 180ms ease, background 180ms ease;
+  grid-template-columns: 80px 1fr auto;
+  align-items: center;
+}
+
+.clinic-list button:hover {
+  padding-right: 18px;
+  padding-left: 18px;
+  background: #edf1e9;
+}
+
+.clinic-list button span {
+  color: var(--sand);
+  font-size: 11px;
+}
+
+.clinic-list button strong {
+  font-size: clamp(19px, 2vw, 25px);
+  font-weight: 300;
+}
+
+.clinic-list button i {
+  font-style: normal;
+}
+
+/* 건강정보의 이미지는 시안의 절제된 색감에 맞춘 추상 도형입니다. */
+.information-section {
+  padding: clamp(90px, 9vw, 140px) 0;
+  background: #eef2ec;
+}
+
+.article-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(18px, 2.4vw, 36px);
+}
+
+.article-grid article {
+  min-width: 0;
+}
+
+.article-art {
+  position: relative;
+  height: clamp(190px, 20vw, 285px);
+  margin-bottom: 24px;
+  background: #cedbca;
+  overflow: hidden;
+}
+
+.article-art::before,
+.article-art::after,
+.article-art span {
+  position: absolute;
+  border-radius: 50%;
+  content: "";
+}
+
+.article-art::before {
+  top: 18%;
+  right: 14%;
+  width: 42%;
+  aspect-ratio: 1;
+  background: #ebe1ca;
+}
+
+.article-art::after {
+  right: -10%;
+  bottom: -38%;
+  width: 82%;
+  aspect-ratio: 1;
+  border: 1px solid #688078;
+}
+
+.article-art span {
+  bottom: 17%;
+  left: 16%;
+  width: 43%;
+  height: 18%;
+  border-radius: 999px;
+  background: #a8bba5;
+  transform: rotate(-25deg);
+}
+
+.article-art--1 {
+  background: #d8d4c7;
+}
+
+.article-art--1::before {
+  top: 31%;
+  right: 32%;
+  width: 30%;
+  background: #b7c7b3;
+}
+
+.article-art--1 span {
+  bottom: 25%;
+  left: 38%;
+  width: 2px;
+  height: 62%;
+  background: #60786f;
+  transform: rotate(27deg);
+}
+
+.article-art--2 {
+  background: #c4d1c4;
+}
+
+.article-art--2::after {
+  right: 24%;
+  bottom: 17%;
+  width: 46%;
+  border: 1px dashed #657d74;
+}
+
+.article-grid article > p {
+  margin: 0 0 10px;
+  color: var(--sand);
+  font-size: 11px;
+}
+
+.article-grid h3 {
+  min-height: 58px;
+  margin: 0 0 15px;
+  font-size: clamp(17px, 1.7vw, 22px);
+  font-weight: 300;
+  letter-spacing: -1px;
+  line-height: 1.5;
+}
+
+.article-grid time {
+  color: #85877f;
+  font-size: 11px;
+}
+
+/* 위치 정보와 약도를 두 칸으로 나눠 배치합니다. */
+.location-section {
+  padding: clamp(90px, 9vw, 140px) 0;
+  background: #f8f7f2;
+}
+
+.location-grid {
+  display: grid;
+  grid-template-columns: minmax(320px, 0.9fr) minmax(450px, 1.1fr);
+  gap: clamp(55px, 8vw, 120px);
+  align-items: center;
+}
+
+.location-copy__address {
+  margin: 27px 0 32px;
+  color: #6f746e;
+  font-size: 15px;
+  font-weight: 300;
+}
+
+.location-copy dl {
+  max-width: 460px;
+  margin: 0 0 35px;
+  border-top: 1px solid var(--line);
+}
+
+.location-copy dl div {
+  display: grid;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--line);
+  grid-template-columns: 110px 1fr;
+}
+
+.location-copy dt {
+  color: #747971;
+  font-size: 13px;
+}
+
+.location-copy dd {
+  margin: 0;
+  font-size: 14px;
+}
+
+.location-button {
+  display: inline-flex;
+  min-width: 178px;
+  height: 52px;
+  padding: 0 24px;
+  border-radius: 999px;
+  color: white;
+  background: var(--green);
+  font-size: 13px;
+  align-items: center;
+  justify-content: center;
+}
+
+.location-button span {
+  margin-left: 10px;
+}
+
+.map-art {
+  position: relative;
+  height: clamp(360px, 37vw, 500px);
+  background: #e1e8de;
+  overflow: hidden;
+}
+
+.map-art::before {
+  position: absolute;
+  inset: 8%;
+  border: 1px solid rgba(53, 84, 73, 0.12);
+  content: "";
+}
+
+.map-art__road {
+  position: absolute;
+  display: block;
+  background: #f8f7f2;
+}
+
+.map-art__road--one {
+  top: 38%;
+  left: -5%;
+  width: 110%;
+  height: 34px;
+  transform: rotate(-8deg);
+}
+
+.map-art__road--two {
+  top: -5%;
+  left: 56%;
+  width: 25px;
+  height: 110%;
+  transform: rotate(18deg);
+}
+
+.map-art__road--three {
+  top: 70%;
+  left: 0;
+  width: 100%;
+  height: 18px;
+}
+
+.map-art__marker {
+  position: absolute;
+  z-index: 2;
+  top: 42%;
+  left: 55%;
+  display: grid;
+  width: 66px;
+  height: 66px;
+  border: 8px solid rgba(255, 255, 255, 0.55);
+  border-radius: 50%;
+  color: white;
+  background: var(--green);
+  font-size: 12px;
+  transform: translate(-50%, -50%);
+  place-items: center;
+}
+
+.map-art small {
+  position: absolute;
+  right: 17%;
+  bottom: 25%;
+  color: #698078;
+  font-size: 10px;
+  transform: rotate(-8deg);
+}
+
+footer {
+  padding: 56px 0;
+  color: rgba(255, 255, 255, 0.68);
+  background: var(--green);
+}
+
+.footer-inner {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 35px;
+  align-items: center;
+}
+
+.logo--footer {
+  min-width: auto;
+  color: white;
+}
+
+.logo--footer strong {
+  font-size: 27px;
+}
+
+.logo--footer span {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+footer p,
+footer small {
+  margin: 0;
+  font-size: 10px;
+  font-weight: 300;
+}
+
+/* 두 종류의 팝업이 공유하는 배경과 기본 패널입니다. */
+.modal-backdrop {
+  position: fixed;
+  z-index: 100;
+  inset: 0;
+  display: grid;
+  padding: 24px;
+  background: rgba(14, 39, 32, 0.56);
+  backdrop-filter: blur(7px);
+  place-items: center;
+}
+
+.modal {
+  position: relative;
+  width: min(100%, 480px);
+  max-height: calc(100dvh - 48px);
+  padding: 42px;
+  border-radius: 22px;
+  background: #f8f7f2;
+  box-shadow: 0 30px 80px rgba(10, 31, 25, 0.25);
+  overflow-y: auto;
+}
+
+.modal__close {
+  position: absolute;
+  top: 18px;
+  right: 22px;
+  border: 0;
+  color: #60736c;
+  background: transparent;
+  font-size: 27px;
+  font-weight: 300;
+}
+
+.modal__eyebrow {
+  margin: 0 0 13px;
+  color: var(--sand);
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+.modal h2 {
+  margin: 0;
+  font-size: 29px;
+  font-weight: 300;
+}
+
+.modal__intro,
+.modal__complete p {
+  margin: 10px 0 27px;
+  color: #73776f;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.modal form,
+.modal label {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal form {
+  gap: 17px;
+}
+
+.modal label {
+  gap: 8px;
+  font-size: 13px;
+}
+
+.modal input,
+.modal textarea {
+  width: 100%;
+  border: 1px solid #d7d8cf;
+  border-radius: 10px;
+  color: var(--green);
+  background: white;
+  font-size: 14px;
+}
+
+.modal input {
+  height: 46px;
+  padding: 0 14px;
+}
+
+.modal textarea {
+  min-height: 88px;
+  padding: 13px 14px;
+  resize: vertical;
+}
+
+.modal form > button,
+.modal__complete button {
+  height: 50px;
+  margin-top: 5px;
+  border: 0;
+  border-radius: 999px;
+  color: white;
+  background: var(--green);
+}
+
+.modal__complete {
+  padding: 26px 0 15px;
+  text-align: center;
+}
+
+.modal__complete > span {
+  display: grid;
+  width: 58px;
+  height: 58px;
+  margin: 0 auto 22px;
+  border-radius: 50%;
+  color: white;
+  background: #9fb49e;
+  font-size: 14px;
+  place-items: center;
+}
+
+.modal__complete button {
+  width: 100%;
+}
+
+.program-modal__icon {
+  display: grid;
+  width: 58px;
+  height: 58px;
+  margin: 20px 0;
+  border-radius: 50%;
+  background: #dce6da;
+  place-items: center;
+}
+
+.program-modal__icon i {
+  width: 22px;
+  height: 22px;
+  border: 1px solid #527267;
+  border-radius: 50%;
+}
+
+.program-modal__detail {
+  margin: 18px 0 30px;
+  color: #6d746f;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.8;
+}
+
+.program-modal__actions {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 10px;
+}
+
+.program-modal__actions button {
+  height: 48px;
+  border: 1px solid var(--green);
+  border-radius: 999px;
+  color: white;
+  background: var(--green);
+  font-size: 13px;
+}
+
+.program-modal__actions button:last-child {
+  color: var(--green);
+  background: transparent;
+}
+
+/* 태블릿에서는 내비게이션 간격과 그림 위치를 먼저 줄입니다. */
+@media (max-width: 1020px) {
+  .logo {
+    min-width: 180px;
+  }
+
+  .nav {
+    gap: 24px;
+  }
+
+  .consult-button {
+    min-width: 130px;
+  }
+
+  .clinic-art {
+    right: -170px;
+    opacity: 0.75;
+  }
+
+  .philosophy__inner,
+  .location-grid {
+    gap: 50px;
+  }
+}
+
+/* 780px 이하에서는 햄버거 메뉴와 세로형 콘텐츠를 사용합니다. */
+@media (max-width: 780px) {
+  .hours-bar {
+    height: 30px;
+  }
+
+  .hours-bar > div {
+    width: calc(100% - 32px);
+  }
+
+  .hours-bar span:nth-of-type(2),
+  .hours-bar span:nth-of-type(3),
+  .hours-bar b {
+    display: none;
+  }
+
+  .hours-bar a {
+    font-size: 11px;
+  }
+
+  .site-header {
+    height: 72px;
+  }
+
+  .site-header__inner {
+    width: calc(100% - 32px);
+  }
+
+  .logo strong {
+    font-size: 30px;
+  }
+
+  .logo span {
+    font-size: 12px;
+  }
+
+  .consult-button {
+    display: none;
+  }
+
+  .menu-button {
+    display: flex;
+    width: 42px;
+    height: 42px;
+    margin-left: auto;
+    padding: 13px 7px;
+    border: 0;
+    background: transparent;
+    flex-direction: column;
+    justify-content: center;
+    gap: 7px;
+  }
+
+  .menu-button span {
+    width: 100%;
+    height: 1px;
+    background: var(--green);
+    transition: transform 180ms ease;
+  }
+
+  .menu-button--open span:first-child {
+    transform: translateY(4px) rotate(45deg);
+  }
+
+  .menu-button--open span:last-child {
+    transform: translateY(-4px) rotate(-45deg);
+  }
+
+  .nav {
+    position: absolute;
+    top: 72px;
+    right: 0;
+    left: 0;
+    display: none;
+    padding: 25px 24px 30px;
+    background: #f8f7f2;
+    box-shadow: 0 20px 30px rgba(23, 58, 49, 0.09);
+    align-items: stretch;
+    flex-direction: column;
+    gap: 22px;
+  }
+
+  .nav--open {
+    display: flex;
+  }
+
+  .nav > a {
+    font-size: 17px;
+  }
+
+  .nav__mobile-cta {
+    display: block;
+    width: 100%;
+  }
+
+  .hero {
+    height: auto;
+    min-height: 655px;
+  }
+
+  .hero__inner {
+    width: calc(100% - 40px);
+  }
+
+  .hero__content {
+    padding: 76px 0 48px;
+  }
+
+  .hero h1 {
+    margin: 32px 0 24px;
+    font-size: clamp(33px, 9.5vw, 42px);
+    letter-spacing: -2.7px;
+  }
+
+  .hero__description {
+    font-size: 15px;
+  }
+
+  .hero__actions {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 21px;
+  }
+
+  .hero__actions button {
+    width: 175px;
+    height: 55px;
+  }
+
+  .pagination {
+    margin-top: 55px;
+  }
+
+  .clinic-art {
+    top: 295px;
+    right: -240px;
+    width: 430px;
+    height: 430px;
+    opacity: 0.42;
+  }
+
+  .clinic-art__inner {
+    width: 310px;
+    height: 310px;
+  }
+
+  .clinic-art__sun {
+    top: 48px;
+    right: 100px;
+    width: 145px;
+    height: 145px;
+  }
+
+  .program-section {
+    padding: 54px 0 65px;
+  }
+
+  .program-section__inner {
+    width: calc(100% - 40px);
+  }
+
+  .program-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .program-card {
+    min-height: 158px;
+  }
+
+  .program-card__more {
+    opacity: 1;
+    transform: none;
+  }
+
+  .scroll-note {
+    display: none;
+  }
+
+  .section-inner {
+    width: calc(100% - 40px);
+  }
+
+  .philosophy__inner,
+  .location-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .philosophy__copy {
+    padding-top: 0;
+  }
+
+  .philosophy__copy dl {
+    grid-template-columns: 1fr;
+  }
+
+  .philosophy__copy dl div {
+    display: grid;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(23, 58, 49, 0.12);
+    grid-template-columns: 45px 1fr;
+    align-items: center;
+  }
+
+  .philosophy__copy dd {
+    margin: 0;
+  }
+
+  .section-heading--row {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .section-heading--row > a {
+    padding: 8px 0 0;
+  }
+
+  .article-grid {
+    grid-template-columns: 1fr;
+    gap: 38px;
+  }
+
+  .article-art {
+    height: 280px;
+  }
+
+  .article-grid h3 {
+    min-height: auto;
+  }
+
+  .location-grid {
+    gap: 55px;
+  }
+
+  .map-art {
+    height: 390px;
+  }
+
+  .footer-inner {
+    justify-items: start;
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+}
+
+/* 가장 작은 휴대폰에서는 팝업과 히어로 텍스트 여백을 더 줄입니다. */
+@media (max-width: 430px) {
+  .hours-bar > div {
+    justify-content: center;
+  }
+
+  .hours-bar a {
+    display: none;
+  }
+
+  .hero__description br {
+    display: none;
+  }
+
+  .modal {
+    padding: 38px 24px 28px;
+  }
+
+  .program-modal__actions {
+    grid-template-columns: 1fr;
+  }
+
+  .clinic-list button {
+    grid-template-columns: 48px 1fr auto;
+  }
+
+  .map-art {
+    height: 320px;
+  }
+}
